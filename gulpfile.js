@@ -1,14 +1,14 @@
 
 var gulp 					= require('gulp'),
-	path 					= require('path'),
-	less 					= require('gulp-less'),
+	path 						= require('path'),
+	less 						= require('gulp-less'),
 	watch 					= require('gulp-watch'),
 	inject 					= require('gulp-inject'),
 	notify 					= require('gulp-notify'),
 	server					= require('gulp-express'),
-	uglify					= require('gulp-wait'),
-	ngAnnotate 				= require('gulp-ng-annotate'),
-	bowerFiles 				= require('main-bower-files'),
+	uglify					= require('gulp-uglify'),
+	ngAnnotate 			= require('gulp-ng-annotate'),
+	bowerFiles 			= require('main-bower-files'),
 	removeRootPath = function (root) {
 		return function (path) {
 			var args = arguments;
@@ -52,7 +52,6 @@ gulp
 					{name: 'bower', transform: removeRootPath('bower_components')}))
 			.pipe(gulp.dest('./views'));
 	})
-
 
 	.task('inject:dist', ['styles', 'javascripts'], function () {
 		gulp.src('./views/*.twig')

@@ -1,17 +1,20 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+
 router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+/* MODULE Preview */
+/* GET Welcome /welcome */
 router.get('/welcome', function(req, res, next) {
-  res.render('welcome', { users: ['Uno', 'Dos', 'Tres'] });
+  res.render('welcome', { items: ['One', 'Two', 'Three'] });
 });
 
+/* GET Success /success */
 router.get('/success', function(req, res, next) {
-  res.render('success', { username: 'Jorge' });
+  res.render('success', { username: 'User' });
 });
 
 module.exports = router;

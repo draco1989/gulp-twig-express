@@ -5,10 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var twig = require('twig');
+var annotationRouter = require('annotation-router');
 
 var routes = require('./routes/index');
 
 var app = express();
+
+twig.extendFunction("menuData", function() {
+    return annotationRouter.dump('routes');
+});
 
 // view engine setup
 app.set('views', 'views');
