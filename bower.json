@@ -1,0 +1,19 @@
+{
+  "name": "gulp-twig-express",
+  "version": "0.0.0",
+  "authors": [
+    "Jorge García <draco19892002@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "angular": "~1.3.11"
+  }
+}

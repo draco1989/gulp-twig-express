@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Twig Renderer</title>
+    <!-- bower:css -->
+      <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+      <!-- endinject -->
+      
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/sandstone/bootstrap.min.css">
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    <!-- endinject -->
+  </head>
+  <body>
+    <div class="main-header">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="fluid-container">
+          <div class="navbar-header">
+            <a href="/" class="navbar-brand">Twig Renderer</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="/welcome">Welcome</a>
+              </li>
+              <li>
+                <a href="/success">Success</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="container main-content">
+      {% block content %}
+        <div class="alert alert-danger">
+          Templating is not working
+        </div>
+      {% endblock %}
+    </div>
+
+    <!-- bower:js -->
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="/angular/angular.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endinject -->
+    
+    <!-- inject:js -->
+    <!-- endinject -->
+
+    {% block js %}{% endblock %}
+    
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+  </body>
+</html>
