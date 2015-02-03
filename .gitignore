@@ -1,2 +1,13 @@
 node_modules/
 bower_components/
+routes/*
+routes/!index.js
+views/*
+views/!layout.twig
+views/!index.twig
+views/!error.twig
+private/js/*
+private/js/!index.js
+private/css/*
+private/css/!base.less
+public/**/*
