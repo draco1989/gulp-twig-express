@@ -7,8 +7,11 @@ var gulp 					= require('gulp'),
 	notify 					= require('gulp-notify'),
 	server					= require('gulp-express'),
 	uglify					= require('gulp-uglify'),
+	rename					= require('gulp-rename'),
+	replace					= require('gulp-replace'),
 	ngAnnotate 			= require('gulp-ng-annotate'),
 	bowerFiles 			= require('main-bower-files'),
+	config 					= require('./config.json'),
 	removeRootPath = function (root) {
 		return function (path) {
 			var args = arguments;
@@ -62,17 +65,34 @@ gulp
 			.pipe(gulp.dest('./views'));
 	})
 
+	.task('static:templates', function () {
+		gulp.src(config.static.templates.src, {base: config.static.templates.cwd})
+			.pipe(rename(function (file) {
+				file.basename = file.dirname.replace(/[\/-]/g, '_') + '_' + file.basename;
+				file.dirname = '';
+				file.extname = '.twig';
+			}))	
+			.pipe(
+				replace(
+					new RegExp('"(' + config.static.resources.search + ')(.*\.(css|js))"', 'g'), 
+					// /"(\.\.)(.*\.(css|js))"/g,
+					'"' + config.static.resources.replace + '$2"'
+				)
+			)
+			.pipe(gulp.dest('./views'));
+	})
 
-	.task('watch', ['inject:bower', 'inject:dist'], function () {
+	.task('watch', ['inject:bower', 'inject:dist', 'static:templates'], function () {
 		gulp.watch(['./private/less/*.less'], ['styles', 'inject:dist']);
 		gulp.watch(['./private/js/*.js'], ['javascripts', 'inject:dist']);
+		gulp.watch([config.static.templates.src], ['static:templates']);
 	})
 
 
 	.task('default', ['watch'], function () {
 		server.run({file: 'bin/www'});
 
-		gulp.watch(['public/javascripts/*', 'public/stylesheets/*'], server.notify);
+		gulp.watch(['public/**/*'], server.notify);
 		gulp.watch(['./app.js', 'routes/**/*', 'views/**/*'], function (event) {
 			server.run({file: 'bin/www'})
 			setTimeout(function () {

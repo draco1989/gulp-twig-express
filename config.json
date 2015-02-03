@@ -1,0 +1,12 @@
+{
+  "static": {
+    "templates": {
+      "src": "public/static/**/*.html",
+      "cwd": "public/static"
+    },
+    "resources": {
+      "search": "\\.\\.",
+      "replace": "/static"
+    }
+  }
+}
